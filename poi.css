@@ -1,0 +1,61 @@
+#divone{
+	background :rgba(255, 0, 0, 0.3);
+}
+#div2{
+	background :rgba(255, 0, 0, 0.7);
+
+
+}
+#container1 {
+	margin: 0px auto;
+	border-radius: 25px;
+	width: 520px;
+	height:400px;
+	background-color: #333;
+	padding :10px;
+	
+}
+#videoElement {
+	width: 500px;
+	border-radius: 25px;
+	height: 375px;
+	background-color: #666;
+}
+#div1{
+	padding: 10px;
+	height: 400px;
+	width: 0 auto;
+
+	
+
+}
+.BOX{
+	background :rgba(0, 0, 255, 0.7);
+	
+	float: left;
+}
+
+	
+
+.kya{
+	color: white;
+	background :rgba(0, 0, 255, 0.9);
+	margin:2.5%;
+	height:47.5%;
+	width:95% ;
+}
+
+
+
+#rcorners1 {
+  border-radius: 25px;
+  background: #73AD21;
+  padding: 20px; 
+  width: 200px;
+  height: 150px;  
+}
+.navbar navbar-inverse{
+	border-radius: 25px;
+	margin-left: 20px;
+	margin-right: 20px
+}
