@@ -117,8 +117,9 @@ async function init() {
             // alert('Oh yeah!');
             // stop(video);
             incrementScore();
-            checkBox.checked = false;
-            return;
+            changeLetter();
+            // checkBox.checked = false;
+            // return;
         }
 
 
