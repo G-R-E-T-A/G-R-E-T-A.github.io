@@ -10,10 +10,14 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+	<script src="https://docs.opencv.org/3.4/opencv.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="assets/css/learning.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/common.css">
 
-	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="assets/js/script.js"></script>
 
 </head>
 
@@ -70,12 +74,12 @@
 
 
 
-								<input class="rounded-lg text-center mr-2" type="input" name="enter"
+
+								<input class="rounded-lg text-center mr-2" type="input" name="enter" id="letter-input"
 									style="font-weight: bold; width: 45%" maxlength="1">
-								<a href="">
-									<button type="button" class="btn btn-dark"
-										style="font-weight: bold; width: 48%">Start</button>
-								</a>
+								<button type="button" class="btn btn-dark"
+									style="font-weight: bold; width: 48%" onclick="changeLetter()">Choose</button>
+
 
 							</div>
 							<div class="space-20"></div>
@@ -91,7 +95,7 @@
 
 						<div class="col sbox bg-white shadow-lg rounded-lg">
 							<div class="container text-center">
-							<div class="space-20"></div>
+								<div class="space-20"></div>
 								<p class="pt-2" style="font-size:1.25em">Show the hand sign</p>
 								<h1 id="head1">Y</h1>
 
@@ -113,14 +117,20 @@
 						<h2 class="greta">Try it out</h2>
 						<div class="space-20"></div>
 
-						<button type="button" class="btn btn-light L-btn-cam"> Click to start webcam <img class="pl-3"
-								src="assets/img/cam.svg"></button>
+						<button type="button" class="btn btn-light L-btn-cam" onclick="init()"> Click to start webcam
+							<img class="pl-3" src="assets/img/cam.svg"></button>
 						<div class="space-20"></div>
+						<input type="checkbox" name="stream" value="stream" id="stream" disabled hidden>
 
 
 
-						<div >
-						<img id="videoitem" src="assets/img/kai.svg">
+						<canvas id="webcam-canvas" width="308" height="308"></canvas>
+
+
+
+						<canvas id="canvasOutput" width="320" height="240" hidden></canvas>
+						<video id="videoInput" width="640" height="480" hidden></video>
+
 						<div class="space-20"></div>
 						<div class="text-center">
 							<button class="flip-btn mr-2">
@@ -147,7 +157,7 @@
 							<div class="container mt-4 text-center">
 								<h2 class="head2">Results</h2>
 								<br>
-								<img src="assets/img/bulb.svg">
+								<img id="bulb" src="assets/img/bulb.svg">
 							</div>
 							<div class="space-50"></div>
 
@@ -175,24 +185,6 @@
 
 	</div>
 
-	<!-- <div class=" bg-dark footer text-center " >
-	<p class="text-white p-2">MINI project</p>
-
-</div>
- -->
-
-	<!-- TRIAL -->
-	<script>
-		var myVideo = document.getElementById("video1");
-
-		function playPause() {
-			if (myVideo.paused)
-				myVideo.play();
-			else
-				myVideo.pause();
-		}
-
-	</script>
 </body>
 
 </html>
