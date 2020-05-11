@@ -2,19 +2,19 @@ const URL = "https://raw.githubusercontent.com/Jyothis-P/G.R.E.T.A/master/models
 
 let model, webcam, labelContainer, letter, winCount, lossCount;
 
+let score = 0;
+
 const CATEGORIES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'nothing'];
 
 
 function changeLetter() {
-    let input = document.getElementById("letter-input").value.toUpperCase();
-    let index = CATEGORIES.indexOf(input);
-    console.log(index, input);
-    if (index < 25 && index > -1) {
-        document.getElementById('head1').innerHTML = input;
-    } else {
-        alert('Invalid Character. (We do not support "J" and "Z" currently)')
-    }
-    return;
+    letter = CATEGORIES[Math.floor(Math.random() * (CATEGORIES.length - 1))];
+    document.getElementById('head1').innerHTML = letter;
+}
+
+function incrementScore(){
+    score++;
+    document.getElementById("head3").innerHTML = score;
 }
 
 // Load the image model and setup the webcam
@@ -35,6 +35,8 @@ async function init() {
     letter = document.getElementById('head1').innerHTML;
     winCount = 0;
     lossCount = 0;
+
+    document.getElementById("head3").innerHTML = score;
 
     let bulb = document.getElementById("bulb");
     bulb.style.opacity = .2;
@@ -113,7 +115,8 @@ async function init() {
             winCount = 0;
             bulb.style.opacity = 1;
             // alert('Oh yeah!');
-            stop(video);
+            // stop(video);
+            incrementScore();
             checkBox.checked = false;
             return;
         }

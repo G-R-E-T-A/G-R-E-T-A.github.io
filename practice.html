@@ -64,7 +64,7 @@
 			<div class="row" style="border-color: rgba(0,0,255,0.5)	  ">
 
 
-				<div class="col ">
+				<div class="col-3 ">
 					<div class="row" style="border-color: rgba(0,0,255,0.5)	  ">
 
 						<div class="col sbox bg-white shadow-sm rounded-lg">
@@ -104,17 +104,22 @@
 				</div>
 
 
-				<div class="col-5 sbox bg-white shadow rounded-lg">
+				<div class="col middle-col  sbox bg-white shadow rounded-lg">
 					<div class="container mt-4   text-center ">
 						<h2 class="greta">Try it out</h2>
 						<div class="space-20"></div>
 
-						<button type="button" class="btn btn-light L-btn-cam"> Click to start webcam <img class="pl-3"
-								src="assets/img/cam.svg"></button>
+						<button type="button" class="btn btn-light L-btn-cam" onclick="init()"> Click to start webcam
+							<img class="pl-3" src="assets/img/cam.svg"></button>
 						<div class="space-20"></div>
+						<input type="checkbox" name="stream" value="stream" id="stream" disabled hidden>
 
-						<div >
-						<img id="videoitem" src="assets/img/kai.svg">
+
+
+						<canvas id="webcam-canvas" width="308" height="308"></canvas>
+
+						<canvas id="canvasOutput" width="320" height="240" hidden></canvas>
+						<video id="videoInput" width="640" height="480" hidden></video>
 						<div class="space-20"></div>
 						<div class="text-center">
 							<button class="flip-btn mr-2">
@@ -129,16 +134,15 @@
 					
 
 					</div>
-				</div>
 
-				<div class="col ">
+				<div class="col-3 ">
 					<div class="row" style="border-color: rgba(0,0,255,0.5)	  ">
 
 						<div class="col sbox bg-white shadow-lg rounded-lg">
 							<div class="container mt-4 text-center">
 								<h2 class="head2">Results</h2>
 								<div class="space-20"></div>
-								<img src="assets/img/bulb.svg">
+								<img id="bulb" src="assets/img/bulb.svg">
 								<div class="space-20"></div>
 								<div class="space-20"></div>
 							</div>
@@ -151,7 +155,7 @@
 							<div class="container mt-4 text-center">
 								<h2 class="head2">Score</h2>
 								<div class="space-20"></div>
-								<h1 id="head1">42</h1>
+								<h1 id="head3">42</h1>
 
 							</div>
 						</div>
@@ -163,9 +167,6 @@
 
 
 			</div>
-			<div class="row"></div>
-
-
 		</div>
 
 	</div>
