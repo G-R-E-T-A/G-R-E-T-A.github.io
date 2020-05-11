@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/learning.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/common.css">
 
-	<script type="text/javascript" src="assets/js/script.js"></script>
+	<script type="text/javascript" src="assets/js/learing.js"></script>
 
 </head>
 
@@ -26,7 +26,7 @@
 	<!-- Here goes navbar -->
 	<nav id="nav" class="navbar navbar-expand-md navbar-dark  fixed-top" style="background: #5A656A ">
 		<a class="navbar-brand  smooth-goto greta" href="index.html">
-			G.R.E.T.A
+			G.R.E.T.A 
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,9 @@
 		<div class="collapse navbar-collapse " id="navbarSupportedContent">
 
 			<ul class="navbar-nav mr-auto font-weight-light">
-
+				<li class="nav-item ">
+					<a class="nav-link smooth-goto" href="index.html">HOME</a>
+				</li>
 				<li class="nav-item ">
 					<a class="nav-link smooth-goto" href="practice.html" diabled>PRACTICE</a>
 				</li>
@@ -62,7 +64,7 @@
 			<div class="row" style="border-color: rgba(0,0,255,0.5)	  ">
 
 
-				<div class="col ">
+				<div class="col-md-3 ">
 					<div class="row" style="border-color: rgba(0,0,255,0.5)	  ">
 
 						<div class="col sbox bg-white shadow-sm rounded-lg">
@@ -81,7 +83,7 @@
 									style="font-weight: bold; width: 48%" onclick="changeLetter()">Choose</button>
 
 
-							</div>
+								</div>
 							<div class="space-20"></div>
 
 
@@ -112,7 +114,7 @@
 				</div>
 
 
-				<div class="col-5 sbox bg-white shadow rounded-lg">
+				<div class="col middle-col sbox bg-white shadow rounded-lg">
 					<div class="container mt-4   text-center ">
 						<h2 class="greta">Try it out</h2>
 						<div class="space-20"></div>
@@ -126,17 +128,13 @@
 
 						<canvas id="webcam-canvas" width="308" height="308"></canvas>
 
-
-
 						<canvas id="canvasOutput" width="320" height="240" hidden></canvas>
 						<video id="videoInput" width="640" height="480" hidden></video>
-
 						<div class="space-20"></div>
 						<div class="text-center">
 							<button class="flip-btn mr-2">
 								Flip <img class="pl-2" src="assets/img/flip.svg">
 							</button>
-						</div>
 						</div>
 						<div class="space-50"></div>
 
@@ -150,7 +148,7 @@
 					</div>
 				</div>
 
-				<div class="col ">
+				<div class="col col-md-3">
 					<div class="row" style="border-color: rgba(0,0,255,0.5)	  ">
 
 						<div class="col sbox bg-white shadow-lg rounded-lg">
@@ -174,7 +172,6 @@
 
 
 			</div>
-			<div class="row"></div>
 
 
 		</div>
