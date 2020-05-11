@@ -1,16 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins&display=swap');
 
-body{
-background: #E8EAED;
-}
-.space-50{
-    width: 100%;
-    height: 50px;
-}
-.space-20{
-    width: 100%;
-    height: 20px;
-}
+
 
 .footer{
     position: absolute;
