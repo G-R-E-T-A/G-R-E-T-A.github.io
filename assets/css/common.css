@@ -12,6 +12,11 @@ body {
 	height: 20px;
 }
 
+.bulb{
+	opacity: 0.2;
+
+}
+
 .greta {
 	font-family: 'Orbitron', sans-serif;
 }
