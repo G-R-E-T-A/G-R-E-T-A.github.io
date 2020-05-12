@@ -1,10 +1,28 @@
 const URL = "https://raw.githubusercontent.com/Jyothis-P/G.R.E.T.A/master/models/model.json";
 
-let model, webcam, labelContainer, letter, winCount, lossCount;
+let checkBox, video, model, webcam, labelContainer, letter, winCount, lossCount, winSound, defeatSound;
+let countElement;
 
 let score = 0;
+let startTime = 0;
+let counting = false;
 
 const CATEGORIES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'nothing'];
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function () {
+        this.sound.play();
+    }
+    this.stop = function () {
+        this.sound.pause();
+    }
+}
 
 
 function changeLetter() {
@@ -12,25 +30,98 @@ function changeLetter() {
     document.getElementById('head1').innerHTML = letter;
 }
 
-function incrementScore(){
+function incrementScore() {
+    winSound.play();
     score++;
     document.getElementById("head3").innerHTML = score;
 }
 
-// Load the image model and setup the webcam
-async function init() {
-    // const modelURL = URL + "model.json";
-    let buttonClicked = Date.now();
-    const model = await tf.loadLayersModel(URL);
+function startCountdown() {
+    startTime = new Date().getTime();
+    counting = true;
+    countElement.style.color = "black";
+    changeButtonText('Stop');
+    countdown();
+}
 
-    console.log("Model load success.");
-    let checkBox = document.getElementById("stream");
+function onCountdownEnd() {
+    checkBox.checked = false;
+    defeatSound.play();
+    countElement.innerHTML = '00:00';
+    countElement.style.color = "black";
+    counting = false;
+    changeButtonText('Try again!');
+
+    setTimeout(() => {
+        alert("Awesome! You got a score of " + score);
+    }, 1000);
+   
+}
+
+function countdown() {
+    var now = new Date().getTime();
+    var target = startTime + (60 * 1000); //60s countdown
+    var distance = target - now;
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var millis = Math.floor((distance % (1000)) / 10);
+
+    if (distance < (10 * 1000)) {
+        countElement.style.color = "red";
+    }
+
+    if (distance < 0) {
+        return onCountdownEnd();
+    }
+
+    let timeLeft = seconds + ':' + millis;
+
+    countElement.innerHTML = timeLeft;
+
+    if (counting) {
+        setTimeout(countdown, 10);
+    }
+
+}
+
+window.onload = () => {
+    checkBox = document.getElementById("stream");
+    countElement = document.getElementById("countdown");
+
+    winSound = new sound('assets/sounds/correct.wav');
+    defeatSound = new sound('assets/sounds/game over.wav');
+    console.log("Sounds loaded.");
+    initModel();
+}
+
+async function initModel(){
+    model = await tf.loadLayersModel(URL);
+    console.log("Model loaded.");
+    initButton();
+}
+
+function changeButtonText(text){
+    let button = document.getElementById("webcamButton");
+    var txt = button.innerText.trim();
+    var html = button.innerHTML;
+    button.innerHTML = html.replace(txt, text);
+}
+
+function initButton(){
+    let button = document.getElementById("webcamButton");
+    button.classList.remove('disabled');
+    button.disabled = false;
+}
+
+function init() {
+    let buttonClicked = Date.now();
 
     if (checkBox.checked == true) {
         checkBox.checked = false;
+        onCountdownEnd();
         return;
     }
 
+    startCountdown();
 
     letter = document.getElementById('head1').innerHTML;
     winCount = 0;
@@ -44,7 +135,7 @@ async function init() {
     checkBox.checked = true;
 
     labelContainer = document.getElementById('label-container');
-    let video = document.getElementById("videoInput"); // video is the id of video tag
+    video = document.getElementById("videoInput"); // video is the id of video tag
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(function (stream) {
             video.srcObject = stream;
@@ -111,15 +202,11 @@ async function init() {
 
         // console.log(winCount)
 
-        if (winCount > 10) {
+        if (winCount > 6) {
             winCount = 0;
             bulb.style.opacity = 1;
-            // alert('Oh yeah!');
-            // stop(video);
             incrementScore();
             changeLetter();
-            // checkBox.checked = false;
-            // return;
         }
 
 
@@ -130,7 +217,7 @@ async function init() {
         if (checkBox.checked == true) {
             setTimeout(processVideo, delay);
         } else {
-            stop(video)
+            stop(video);
         }
     }
 
