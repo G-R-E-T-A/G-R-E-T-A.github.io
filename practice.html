@@ -12,7 +12,7 @@
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-	<script type="text/javascript" src="tf.min.js"></script>
+	<script type="text/javascript" src="assets/js/tf.min.js"></script>
 	<script src="https://docs.opencv.org/3.4/opencv.js"></script>
 
 
@@ -90,15 +90,12 @@
 							<div class="container mt-4 text-center">
 								<h2 class="head2">Countdown</h2>
 								<div class="space-20"></div>
-								<div class="space-20"></div>
-								<h2 id="countdown">00:00</h2>
+
+
+                <div class="space-20"></div>
+								<h2 id="countdown">60:00</h2>
+
 								<div class="space-50"></div>
-
-								<a href="">
-									<button type="button" class="btn btn-dark shadow-sm"
-										style="font-weight: bold; width: 90%">Start</button>
-								</a>
-
 							</div>
 						</div>
 
@@ -111,8 +108,11 @@
 						<h2 class="greta">Try it out</h2>
 						<div class="space-20"></div>
 
-						<button type="button" class="btn btn-light L-btn-cam"> Click to start webcam <img class="pl-3"
-								src="assets/img/cam.svg"></button>
+
+
+						<button type="button" class="btn btn-light L-btn-cam disabled" onclick="init()" id="webcamButton" disabled> Click to start webcam
+							<img class="pl-3" src="assets/img/cam.svg"></button>
+
 						<div class="space-20"></div>
 
 						<div >
@@ -133,8 +133,9 @@
 					</div>
 				</div>
 
-				<div class="col ">
-					<div class="row" style="border-color: rgba(0,0,255,0.5)	  ">
+
+				<div class="col-3 ">
+
 
 						<div class="col sbox bg-white shadow-lg rounded-lg">
 							<div class="container mt-4 text-center">
@@ -146,7 +147,7 @@
 							</div>
 						</div>
 
-					</div>
+					</div> -->
 					<div class="row" style="border-color: rgba(0,0,255,0.5)	  ">
 
 						<div class="col sbox bg-white shadow-lg rounded-lg">
