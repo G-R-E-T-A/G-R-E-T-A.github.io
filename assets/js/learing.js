@@ -1,8 +1,52 @@
 const URL = "https://raw.githubusercontent.com/Jyothis-P/G.R.E.T.A/master/models/model.json";
 
-let model, webcam, labelContainer, letter, winCount, lossCount;
+let model, webcam, labelContainer, letter, winCount, lossCount, winSound;
 
 const CATEGORIES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'nothing'];
+
+
+
+window.onload = () => {
+
+    winSound = new sound('assets/sounds/clear.wav');
+    console.log("Sounds loaded.");
+    initModel();
+}
+
+async function initModel(){
+    model = await tf.loadLayersModel(URL);
+    console.log("Model loaded.");
+    initButton();
+}
+
+function changeButtonText(text){
+    let button = document.getElementById("webcamButton");
+    var txt = button.innerText.trim();
+    var html = button.innerHTML;
+    button.innerHTML = html.replace(txt, text);
+}
+
+function initButton(){
+    let button = document.getElementById("webcamButton");
+    button.classList.remove('disabled');
+    button.disabled = false;
+}
+
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function () {
+        this.sound.play();
+    }
+    this.stop = function () {
+        this.sound.pause();
+    }
+}
 
 
 function changeLetter() {
@@ -22,9 +66,6 @@ function changeLetter() {
 async function init() {
     // const modelURL = URL + "model.json";
     let buttonClicked = Date.now();
-    const model = await tf.loadLayersModel(URL);
-
-    console.log("Model load success.");
     let checkBox = document.getElementById("stream");
 
     if (checkBox.checked == true) {
@@ -113,6 +154,7 @@ async function init() {
         if (winCount > 10) {
             winCount = 0;
             bulb.style.opacity = 1;
+            winSound.play();
             // alert('Oh yeah!');
             stop(video);
             checkBox.checked = false;

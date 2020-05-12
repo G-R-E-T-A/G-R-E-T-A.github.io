@@ -51,3 +51,9 @@ p {
 .middle-col {
 	min-width: 366px;
 }
+
+
+.disabled {
+	box-shadow: none !important;
+	background: white !important;
+}
