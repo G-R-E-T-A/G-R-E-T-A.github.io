@@ -129,9 +129,6 @@ function init() {
 
     document.getElementById("head3").innerHTML = score;
 
-    let bulb = document.getElementById("bulb");
-    bulb.style.opacity = .2;
-
     checkBox.checked = true;
 
     labelContainer = document.getElementById('label-container');
@@ -204,7 +201,6 @@ function init() {
 
         if (winCount > 6) {
             winCount = 0;
-            bulb.style.opacity = 1;
             incrementScore();
             changeLetter();
         }
