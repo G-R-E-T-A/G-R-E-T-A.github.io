@@ -37,6 +37,7 @@ function incrementScore() {
 }
 
 function startCountdown() {
+    score = 0;
     startTime = new Date().getTime();
     counting = true;
     countElement.style.color = "black";
