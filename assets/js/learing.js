@@ -11,6 +11,7 @@ function changeLetter() {
     console.log(index, input);
     if (index < 25 && index > -1) {
         document.getElementById('head1').innerHTML = input;
+        document.getElementById('illustration').src = 'assets/img/alphabets/' + input + '.jpg';
     } else {
         alert('Invalid Character. (We do not support "J" and "Z" currently)')
     }
